@@ -1,0 +1,8 @@
+{
+  "data": {
+    "aggregation": "MAX",
+    "precision": 2,
+    "description": "Installed power",
+    "unit": "kWp"
+  }
+}

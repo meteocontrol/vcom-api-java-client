@@ -1,0 +1,5 @@
+type,sensors,sensors,sensors,sensors,sensors,sensors,sensors,sensors,sensors,sensors,sensors,sensors
+id,136863,136863,136863,136864,136864,136864,136865,136865,136865,136866,136866,136866
+timestamp,SRAD,STATE,T,SRAD,STATE,T,SRAD,STATE,T,SRAD,STATE,T
+2016-10-30T06:00:00+09:00,null,null,21.43,120.33,0.00,20.80,109.46,null,null,null,null,22.10
+2016-10-30T06:05:00+09:00,null,null,20.92,110.04,0.00,20.75,100.16,null,null,null,null,22.20

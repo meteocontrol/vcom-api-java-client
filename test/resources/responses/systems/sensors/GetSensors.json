@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "id": "136863",
+      "name": "C09　Module Temp　モジュール温度計"
+    },
+    {
+      "id": "136864",
+      "name": "C09　Pyranometer SMP11　日射量計"
+    },
+    {
+      "id": "136865",
+      "name": "C09　Irradiation sensor SI-420TC　日射量計"
+    },
+    {
+      "id": "136866",
+      "name": "C09　Ambient Temp　温度計"
+    },
+    {
+      "id": "136908",
+      "name": " Irradiation sensor M&T / mc Si-420TC-T (4 - 20mA)"
+    },
+    {
+      "id": "136909",
+      "name": "Temperature sensor PT1000 sensor with integrated converter (0 - 10V)"
+    }
+  ]
+}

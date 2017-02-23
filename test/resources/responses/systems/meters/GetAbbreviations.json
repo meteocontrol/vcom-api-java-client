@@ -1,0 +1,24 @@
+{
+  "data": [
+    "E_INT",
+    "M_AC_E_EXP",
+    "M_AC_E_IMP",
+    "M_AC_F",
+    "M_AC_I1",
+    "M_AC_I2",
+    "M_AC_I3",
+    "M_AC_P",
+    "M_AC_P1",
+    "M_AC_P2",
+    "M_AC_P3",
+    "M_AC_PF_COSPHI",
+    "M_AC_Q",
+    "M_AC_S",
+    "M_AC_U_L1L2",
+    "M_AC_U_L2L3",
+    "M_AC_U_L3L1",
+    "M_AC_U1",
+    "M_AC_U2",
+    "M_AC_U3"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "data": {
+    "nominalPower": 72.04,
+    "siteArea": 864,
+    "panels": [
+      {
+        "vendor": "01 - Unknown",
+        "model": "Standard poly",
+        "count": "720"
+      },
+      {
+        "vendor": "01 - Unknown",
+        "model": "Standard poly2",
+        "count": "720"
+      }
+    ],
+    "inverters": [
+      {
+        "vendor": "TMEIC",
+        "model": "PVL-L0250",
+        "count": 3
+      },
+      {
+        "vendor": "TMEIC2",
+        "model": "PVL-L0251",
+        "count": 3
+      }
+    ]
+  }
+}

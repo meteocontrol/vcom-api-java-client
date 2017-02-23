@@ -1,0 +1,8 @@
+{
+  "data": {
+    "aggregation": "SUM",
+    "precision": 3,
+    "description": "Energy generated per interval",
+    "unit": "kWh"
+  }
+}

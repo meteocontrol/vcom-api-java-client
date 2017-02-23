@@ -1,0 +1,22 @@
+{
+  "data": [
+    "COS_PHI",
+    "E_DAY",
+    "E_INT",
+    "E_INT_N",
+    "E_TOTAL",
+    "F_AC",
+    "I_AC",
+    "I_AC1",
+    "I_AC2",
+    "I_AC3",
+    "I_DC",
+    "P_AC",
+    "P_AC_N",
+    "P_DC",
+    "U_AC_L1L2",
+    "U_AC_L2L3",
+    "U_AC_L3L1",
+    "U_DC"
+  ]
+}
