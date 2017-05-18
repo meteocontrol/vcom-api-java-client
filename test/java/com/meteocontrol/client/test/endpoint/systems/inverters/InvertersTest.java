@@ -166,41 +166,44 @@ public class InvertersTest {
                 "/responses/systems/inverters/GetMeasurements.json"
         );
         MeasurementsCriteria criteria = TestUtils.getCriteria(
-                Resolutions.INTERVAL,
-                "2016-10-30T06:00:00+09:00",
-                "2016-10-30T06:15:00+09:00"
+                Resolutions.DAY,
+                "2016-01-01T11:00:00+02:00",
+                "2016-01-02T23:59:59+02:00"
         );
         when(
                 http.execute(
                         ApiMethods.GET,
-                        "/systems/ABCDE/inverters/Id86460.1/abbreviations/E_DAY/measurements",
+                        "/systems/ABCDE/inverters/Id12345.1/abbreviations/E_INT/measurements",
                         criteria.getAsList(),
                         null
                 )
         ).thenReturn(expectedJson);
 
-        DeviceMeasurement measurements = systemEndpoint.inverter("Id86460.1")
-                .abbreviation("E_DAY")
+        DeviceMeasurement measurements = systemEndpoint.inverter("Id12345.1")
+                .abbreviation("E_INT")
                 .measurements()
                 .get(criteria);
 
         verify(http, times(1))
                 .execute(
                         ApiMethods.GET,
-                        "/systems/ABCDE/inverters/Id86460.1/abbreviations/E_DAY/measurements",
+                        "/systems/ABCDE/inverters/Id12345.1/abbreviations/E_INT/measurements",
                         criteria.getAsList(),
                         null
                 );
 
         MeasurementValue[] expectedMeasurementValues;
         expectedMeasurementValues = new MeasurementValue[]{
-                TestUtils.createMeasurementValue("2016-10-30T06:00:00+09:00", "28.95"),
-                TestUtils.createMeasurementValue("2016-10-30T06:05:00+09:00", "26.72")
+                TestUtils.createMeasurementValue("2016-01-01T11:00:00+02:00", "0.089"),
+                TestUtils.createMeasurementValue("2016-01-01T11:15:00+02:00", "0.082"),
+                TestUtils.createMeasurementValue("2016-01-01T11:30:00+02:00", "0.078"),
+                TestUtils.createMeasurementValue("2016-01-01T11:45:00+02:00", "0.089"),
+                TestUtils.createMeasurementValue("2016-01-01T12:00:00+02:00", "0.095"),
         };
 
         assertArrayEquals(
                 expectedMeasurementValues,
-                measurements.getDeviceMeasurementByDeviceId("Id86460.1").getValuesByAbbreviation("E_DAY")
+                measurements.getDeviceMeasurementByDeviceId("Id12345.1").getValuesByAbbreviation("E_INT")
         );
     }
 
@@ -211,8 +214,8 @@ public class InvertersTest {
         );
         MeasurementsCriteria criteria = TestUtils.getCriteria(
                 Resolutions.INTERVAL,
-                "2016-10-30T06:00:00+09:00",
-                "2016-10-30T06:15:00+09:00"
+                "2016-10-30T06:00:00+02:00",
+                "2016-10-30T06:15:00+02:00"
         );
         when(
             http.execute(
@@ -241,8 +244,8 @@ public class InvertersTest {
         );
         MeasurementValue[] expectedMeasurementValues;
         expectedMeasurementValues = new MeasurementValue[]{
-                TestUtils.createMeasurementValue("2016-10-30T06:00:00+09:00", "31.566"),
-                TestUtils.createMeasurementValue("2016-10-30T06:05:00+09:00", "29.992")
+                TestUtils.createMeasurementValue("2016-10-30T06:00:00+02:00", "31.566"),
+                TestUtils.createMeasurementValue("2016-10-30T06:05:00+02:00", "29.992")
         };
         assertArrayEquals(
                 expectedMeasurementValues,
@@ -258,8 +261,8 @@ public class InvertersTest {
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         simpleDate.setTimeZone(TimeZone.getTimeZone("UTC"));
         MeasurementsCriteria criteria = new MeasurementsCriteria();
-        criteria.withDateFrom(simpleDate.parse("2016-10-30T06:00:00+09:00"))
-                .withDateTo(simpleDate.parse("2016-10-30T06:05:00+09:00"))
+        criteria.withDateFrom(simpleDate.parse("2016-09-01T10:00:00+02:00"))
+                .withDateTo(simpleDate.parse("2016-09-01T10:15:00+02:00"))
                 .withResolution(Resolutions.INTERVAL);
         when(http.execute(ApiMethods.GET, "/systems/ABCDE/inverters/bulk/measurements", criteria.getAsList(), null))
                 .thenReturn(expectedJson);
@@ -279,8 +282,8 @@ public class InvertersTest {
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         simpleDate.setTimeZone(TimeZone.getTimeZone("UTC"));
         MeasurementsCriteria criteria = new MeasurementsCriteria();
-        criteria.withDateFrom(simpleDate.parse("2016-10-30T06:00:00+09:00"))
-                .withDateTo(simpleDate.parse("2016-10-30T06:05:00+09:00"))
+        criteria.withDateFrom(simpleDate.parse("2016-09-01T10:00:00+02:00"))
+                .withDateTo(simpleDate.parse("2016-09-01T10:15:00+02:00"))
                 .withResolution(Resolutions.INTERVAL)
                 .withFormat(BulkResponseFormat.FORMAT_CSV);
         when(http.execute(ApiMethods.GET, "/systems/ABCDE/inverters/bulk/measurements", criteria.getAsList(), null))
@@ -304,8 +307,8 @@ public class InvertersTest {
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         simpleDate.setTimeZone(TimeZone.getTimeZone("UTC"));
         MeasurementsCriteria criteria = new MeasurementsCriteria();
-        criteria.withDateFrom(simpleDate.parse("2016-10-30T06:00:00+09:00"))
-                .withDateTo(simpleDate.parse("2016-10-30T06:05:00+09:00"))
+        criteria.withDateFrom(simpleDate.parse("2016-09-01T10:00:00+02:00"))
+                .withDateTo(simpleDate.parse("2016-09-01T10:15:00+02:00"))
                 .withResolution(Resolutions.INTERVAL)
                 .withFormat(BulkResponseFormat.FORMAT_CSV)
                 .withDecimalPoint(CsvDecimalPoint.DECIMAL_POINT_COLON)

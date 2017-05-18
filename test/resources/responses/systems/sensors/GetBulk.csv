@@ -1,5 +1,5 @@
-type,sensors,sensors,sensors,sensors,sensors,sensors,sensors,sensors,sensors,sensors,sensors,sensors
-id,136863,136863,136863,136864,136864,136864,136865,136865,136865,136866,136866,136866
-timestamp,SRAD,STATE,T,SRAD,STATE,T,SRAD,STATE,T,SRAD,STATE,T
-2016-10-30T06:00:00+09:00,null,null,21.43,120.33,0.00,20.80,109.46,null,null,null,null,22.10
-2016-10-30T06:05:00+09:00,null,null,20.92,110.04,0.00,20.75,100.16,null,null,null,null,22.20
+type,sensors,sensors,sensors,sensors
+id,12345,12346,12346,12346
+timestamp,E_G_M1,E_AH_ABS,E_AH_ABS1,E_AH_REL
+2016-09-01T10:00:00+02:00,441.7,10000.3,78910,55.66
+2016-09-01T10:15:00+02:00,525.5,10080.3,78990,77.88

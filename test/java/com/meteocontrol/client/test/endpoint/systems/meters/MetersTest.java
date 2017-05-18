@@ -155,8 +155,8 @@ public class MetersTest {
         );
         MeasurementsCriteria criteria = TestUtils.getCriteria(
                 Resolutions.INTERVAL,
-                "2016-10-30T06:00:00+09:00",
-                "2016-10-30T06:15:00+09:00"
+                "2016-01-01T11:00:00+02:00",
+                "2016-01-01T11:15:00+02:00"
         );
         when(http.execute(ApiMethods.GET,
                 "/systems/ABCDE/meters/129676/abbreviations/E_INT/measurements",
@@ -176,8 +176,8 @@ public class MetersTest {
 
         MeasurementValue[] expectedMeasurementValues;
         expectedMeasurementValues = new MeasurementValue[]{
-                TestUtils.createMeasurementValue("2016-10-30T06:00:00+09:00", "0"),
-                TestUtils.createMeasurementValue("2016-10-30T06:15:00+09:00", "0")
+                TestUtils.createMeasurementValue("2016-01-01T11:00:00+02:00", "0"),
+                TestUtils.createMeasurementValue("2016-01-01T11:15:00+02:00", "0")
         };
         assertArrayEquals(
                 expectedMeasurementValues,
@@ -192,15 +192,15 @@ public class MetersTest {
         );
         MeasurementsCriteria criteria = TestUtils.getCriteria(
                 Resolutions.INTERVAL,
-                "2016-10-30T06:00:00+09:00",
-                "2016-10-30T06:15:00+09:00"
+                "2016-01-01T00:00:00+02:00",
+                "2016-01-02T23:59:59+02:00"
         );
         when(http.execute(ApiMethods.GET,
-                "/systems/ABCDE/meters/129676,13155/abbreviations/E_INT,M_AC_F/measurements",
+                "/systems/ABCDE/meters/129676,67890/abbreviations/E_INT,M_AC_F/measurements",
                 criteria.getAsList(),
                 null))
                 .thenReturn(expectedJson);
-        String[] deviceIds = new String[]{"129676", "13155"};
+        String[] deviceIds = new String[]{"129676", "67890"};
         String[] abbreviationsIds = new String[]{"E_INT", "M_AC_F"};
         DeviceMeasurement measurements = systemEndpoint.meter(deviceIds)
                 .abbreviation(abbreviationsIds)
@@ -208,26 +208,26 @@ public class MetersTest {
                 .get(criteria);
 
         verify(http, times(1)).execute(ApiMethods.GET,
-                "/systems/ABCDE/meters/129676,13155/abbreviations/E_INT,M_AC_F/measurements",
+                "/systems/ABCDE/meters/129676,67890/abbreviations/E_INT,M_AC_F/measurements",
                 criteria.getAsList(),
                 null);
 
         MeasurementValue[] expectedMeasurementValues;
         expectedMeasurementValues = new MeasurementValue[]{
-                TestUtils.createMeasurementValue("2016-10-30T06:00:00+09:00", "0"),
-                TestUtils.createMeasurementValue("2016-10-30T06:15:00+09:00", "0")
+                TestUtils.createMeasurementValue("2016-01-01T11:00:00+02:00", "0.089"),
+                TestUtils.createMeasurementValue("2016-01-01T11:15:00+02:00", "0.082")
         };
 
         assertArrayEquals(
                 expectedMeasurementValues,
                 measurements.getDeviceMeasurementByDeviceId("129676").getValuesByAbbreviation("E_INT")
         );
-        expectedMeasurementValues[0] = TestUtils.createMeasurementValue("2016-10-30T06:00:00+09:00", "49.968");
-        expectedMeasurementValues[1] = TestUtils.createMeasurementValue("2016-10-30T06:15:00+09:00", "49.969");
+        expectedMeasurementValues[0] = TestUtils.createMeasurementValue("2016-01-01T11:00:00+02:00", "60");
+        expectedMeasurementValues[1] = TestUtils.createMeasurementValue("2016-01-01T11:15:00+02:00", "65");
 
         assertArrayEquals(
                 expectedMeasurementValues,
-                measurements.getDeviceMeasurementByDeviceId("13155").getValuesByAbbreviation("M_AC_F")
+                measurements.getDeviceMeasurementByDeviceId("67890").getValuesByAbbreviation("M_AC_F")
         );
 
     }
@@ -239,8 +239,8 @@ public class MetersTest {
         );
         MeasurementsCriteria criteria = TestUtils.getCriteria(
                 Resolutions.INTERVAL,
-                "2016-10-30T06:00:00+09:00",
-                "2016-10-30T06:05:00+09:00"
+                "2016-09-01T10:00:00+02:00",
+                "2016-09-01T10:15:00+02:00"
         );
         when(http.execute(ApiMethods.GET, "/systems/ABCDE/meters/bulk/measurements", criteria.getAsList(), null))
                 .thenReturn(expectedJson);
@@ -260,8 +260,8 @@ public class MetersTest {
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         simpleDate.setTimeZone(TimeZone.getTimeZone("UTC"));
         MeasurementsCriteria criteria = new MeasurementsCriteria();
-        criteria.withDateFrom(simpleDate.parse("2016-10-30T06:00:00+09:00"))
-                .withDateTo(simpleDate.parse("2016-10-30T06:05:00+09:00"))
+        criteria.withDateFrom(simpleDate.parse("2016-09-01T10:00:00+02:00"))
+                .withDateTo(simpleDate.parse("2016-09-01T10:15:00+02:00"))
                 .withResolution(Resolutions.INTERVAL)
                 .withFormat(BulkResponseFormat.FORMAT_CSV);
         when(http.execute(ApiMethods.GET, "/systems/ABCDE/meters/bulk/measurements", criteria.getAsList(), null))
@@ -285,8 +285,8 @@ public class MetersTest {
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         simpleDate.setTimeZone(TimeZone.getTimeZone("UTC"));
         MeasurementsCriteria criteria = new MeasurementsCriteria();
-        criteria.withDateFrom(simpleDate.parse("2016-10-30T06:00:00+09:00"))
-                .withDateTo(simpleDate.parse("2016-10-30T06:05:00+09:00"))
+        criteria.withDateFrom(simpleDate.parse("2016-09-01T10:00:00+02:00"))
+                .withDateTo(simpleDate.parse("2016-09-01T10:15:00+02:00"))
                 .withResolution(Resolutions.INTERVAL)
                 .withFormat(BulkResponseFormat.FORMAT_CSV)
                 .withDecimalPoint(CsvDecimalPoint.DECIMAL_POINT_COLON)

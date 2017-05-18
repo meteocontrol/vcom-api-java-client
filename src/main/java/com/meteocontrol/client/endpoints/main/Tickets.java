@@ -34,14 +34,15 @@ public class Tickets extends MainEndpoint {
         ObjectNode root = mapper.createObjectNode();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-        root.put("systemKey", ticket.getDesignation());
-        root.put("designation", ticket.getSummary());
+        root.put("systemKey", ticket.getSystemKey());
+        root.put("designation", ticket.getDesignation());
         root.put("date", dateFormat.format(ticket.getDate()));
 
+        if (ticket.getDescription() != null) root.put("description", ticket.getDescription());
         if (ticket.getSummary() != null) root.put("summary", ticket.getSummary());
-        if (ticket.getSummary() != null) root.put("status", ticket.getStatus().toString());
-        if (ticket.getSummary() != null) root.put("priority", ticket.getPriority().toString());
-        if (ticket.getSummary() != null) root.put("includeInReports", ticket.getIncludeInReports().toString());
+        if (ticket.getStatus() != null) root.put("status", ticket.getStatus().toString());
+        if (ticket.getPriority() != null) root.put("priority", ticket.getPriority().toString());
+        if (ticket.getIncludeInReports() != null) root.put("includeInReports", ticket.getIncludeInReports().toString());
 
         String responseJson = this.api.run(this.getUrl(), null, root.toString(), ApiMethods.POST);
         JsonNode rootNode = mapper.readValue(responseJson, JsonNode.class);

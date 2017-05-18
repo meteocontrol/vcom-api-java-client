@@ -64,7 +64,7 @@ public class HttpClient {
         try {
             String url = this.baseUri.toURL() + path;
             if (queryParameters != null) {
-                url += URLEncodedUtils.format(queryParameters, "UTF-8");
+                url += "?" + URLEncodedUtils.format(queryParameters, "UTF-8");
             }
 
             request = this.prepareRequest(method, url, body);

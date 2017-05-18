@@ -63,8 +63,8 @@ public class AbbreviationsTest {
 
         MeasurementsCriteria criteria = TestUtils.getCriteria(
                 Resolutions.DAY,
-                "2016-01-01T00:00:00+00:00",
-                "2016-01-02T23:59:59+00:00"
+                "2016-01-01T00:00:00+02:00",
+                "2016-01-02T23:59:59+02:00"
         );
         when(http.execute(ApiMethods.GET, "/systems/abbreviations/E_Z_EVU/measurements", criteria.getAsList(), null))
                 .thenReturn(expectedJson);
@@ -76,13 +76,13 @@ public class AbbreviationsTest {
         assertEquals(2, measurements.length);
         assertEquals("ABCDE", measurements[0].getSystemKey());
         expectedMeasurementValues = new MeasurementValue[]{
-                TestUtils.createMeasurementValue("2016-01-01T00:00:00Z", "52.182")
+                TestUtils.createMeasurementValue("2016-01-01T00:00:00+02:00", "52.182")
         };
         assertArrayEquals(expectedMeasurementValues, measurements[0].getValuesByAbbreviation("E_Z_EVU"));
 
         assertEquals("VWXYZ", measurements[1].getSystemKey());
         expectedMeasurementValues = new MeasurementValue[]{
-                TestUtils.createMeasurementValue("2016-01-01T00:00:00Z", "199.175")
+                TestUtils.createMeasurementValue("2016-01-01T00:00:00+02:00", "199.175")
         };
         assertArrayEquals(expectedMeasurementValues, measurements[1].getValuesByAbbreviation("E_Z_EVU"));
     }

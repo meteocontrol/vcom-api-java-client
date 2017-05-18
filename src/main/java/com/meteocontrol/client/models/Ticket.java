@@ -16,6 +16,7 @@ public class Ticket {
     private String systemKey;
     private String designation;
     private String summary;
+    private String description;
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="UTC")
     private Date date;
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="UTC")
@@ -36,6 +37,7 @@ public class Ticket {
     public Ticket(int id,
                   String systemKey,
                   String designation,
+                  String description,
                   String summary,
                   Date date,
                   Date lastChange,
@@ -61,6 +63,7 @@ public class Ticket {
         this.includeInReports = includeInReports;
         this.fieldService = fieldService;
         this.severity = severity;
+        this.description = description;
 
     }
 
@@ -160,6 +163,14 @@ public class Ticket {
         this.includeInReports = includeInReports;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Boolean getFieldService() {
         return fieldService;
     }
@@ -194,7 +205,8 @@ public class Ticket {
                 Objects.equals(p.getPriority(), this.priority) &&
                 Objects.equals(p.getIncludeInReports(), this.includeInReports) &&
                 Objects.equals(p.getFieldService(), this.fieldService) &&
-                Objects.equals(p.getSeverity(), this.severity);
+                Objects.equals(p.getSeverity(), this.severity) &&
+                Objects.equals(p.getDescription(), this.description);
     }
 
     public boolean isValid() {

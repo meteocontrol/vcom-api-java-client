@@ -34,6 +34,7 @@ public class Ticket extends SubEndpoint {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         root.put("designation", ticket.getDesignation());
+        root.put("description", ticket.getDescription());
         root.put("summary", ticket.getSummary());
         root.put("date", dateFormat.format(ticket.getDate()));
         root.put("includeInReports", ticket.getIncludeInReports().toString());

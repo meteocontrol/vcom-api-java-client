@@ -104,8 +104,8 @@ public class CalculaitonsTest {
 
         MeasurementsCriteria criteria = TestUtils.getCriteria(
                 Resolutions.DAY,
-                "2016-10-30T06:00:00+09:00",
-                "2016-10-30T06:05:00+09:00"
+                "2016-01-01T00:00:00+02:00",
+                "2016-01-02T23:59:59+02:00"
         );
         when(
             http.execute(
@@ -125,8 +125,8 @@ public class CalculaitonsTest {
                 criteria.getAsList(),
                 null);
         MeasurementValue[] expectedMeasurementValues = new MeasurementValue[]{
-                TestUtils.createMeasurementValue("2016-10-29T07:00:00+09:00", "72.04"),
-                TestUtils.createMeasurementValue("2016-10-30T07:00:00+09:00", "72.04")
+                TestUtils.createMeasurementValue("2016-01-01T00:00:00+02:00", "0"),
+                TestUtils.createMeasurementValue("2016-01-02T00:00:00+02:00", "0")
         };
         assertArrayEquals(expectedMeasurementValues, measurements);
     }
@@ -138,8 +138,8 @@ public class CalculaitonsTest {
         );
         MeasurementsCriteria criteria = TestUtils.getCriteria(
                 Resolutions.INTERVAL,
-                "2016-10-30T06:00:00+09:00",
-                "2016-10-30T06:05:00+09:00"
+                "2016-09-01T00:00:00+02:00",
+                "2016-09-01T00:15:00+02:00"
         );
 
         when(http.execute(ApiMethods.GET, "/systems/ABCDE/calculations/bulk/measurements", criteria.getAsList(), null))
@@ -160,8 +160,8 @@ public class CalculaitonsTest {
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         simpleDate.setTimeZone(TimeZone.getTimeZone("UTC"));
         MeasurementsCriteria criteria = new MeasurementsCriteria();
-        criteria.withDateFrom(simpleDate.parse("2016-10-30T06:00:00+09:00"))
-                .withDateTo(simpleDate.parse("2016-10-30T06:05:00+09:00"))
+        criteria.withDateFrom(simpleDate.parse("2016-09-01T23:45:00+02:00"))
+                .withDateTo(simpleDate.parse("2016-09-01T23:59:00+02:00"))
                 .withResolution(Resolutions.INTERVAL)
                 .withFormat(BulkResponseFormat.FORMAT_CSV);
         when(http.execute(ApiMethods.GET, "/systems/ABCDE/calculations/bulk/measurements", criteria.getAsList(), null))
@@ -185,8 +185,8 @@ public class CalculaitonsTest {
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         simpleDate.setTimeZone(TimeZone.getTimeZone("UTC"));
         MeasurementsCriteria criteria = new MeasurementsCriteria();
-        criteria.withDateFrom(simpleDate.parse("2016-10-30T06:00:00+09:00"))
-                .withDateTo(simpleDate.parse("2016-10-30T06:05:00+09:00"))
+        criteria.withDateFrom(simpleDate.parse("2016-09-01T23:45:00+02:00"))
+                .withDateTo(simpleDate.parse("2016-09-01T23:59:00+02:00"))
                 .withResolution(Resolutions.INTERVAL)
                 .withFormat(BulkResponseFormat.FORMAT_CSV)
                 .withDecimalPoint(CsvDecimalPoint.DECIMAL_POINT_COLON)
