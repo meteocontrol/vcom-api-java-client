@@ -1,11 +1,12 @@
 package com.meteocontrol.client.models;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.meteocontrol.client.models.annotation.ModelProperty;
 
 import java.util.HashMap;
 
 @JsonDeserialize(using = DeviceMeasurementJsonDeserializer.class)
-public class DeviceMeasurement {
+public class DeviceMeasurement extends BaseModel {
     private HashMap<String, AbbreviationMeasurements> measurement;
 
     public DeviceMeasurement() {
@@ -15,6 +16,7 @@ public class DeviceMeasurement {
         this.measurement = measurement;
     }
 
+    @ModelProperty
     public HashMap<String, AbbreviationMeasurements> getAllValues() {
         return this.measurement;
     }
@@ -22,13 +24,4 @@ public class DeviceMeasurement {
     public AbbreviationMeasurements getDeviceMeasurementByDeviceId(String deviceId) {
         return this.measurement.get(deviceId);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof DeviceMeasurement))
-            return false;
-        DeviceMeasurement p = (DeviceMeasurement)obj;
-        return p.getAllValues().equals(this.measurement) ;
-    }
-
 }

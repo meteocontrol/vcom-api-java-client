@@ -1,11 +1,12 @@
 package com.meteocontrol.client.models;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.meteocontrol.client.models.annotation.ModelProperty;
 
 import java.util.HashMap;
 
 @JsonDeserialize(using = TechnicalDataJsonDeserializer.class)
-public class TechnicalData {
+public class TechnicalData extends BaseModel {
 
     private String nominalPower;
     private String siteArea;
@@ -23,6 +24,7 @@ public class TechnicalData {
         this.inverters = inverters;
     }
 
+    @ModelProperty
     public String getNominalPower() {
         return this.nominalPower;
     }
@@ -31,6 +33,7 @@ public class TechnicalData {
         this.nominalPower = nominalPower;
     }
 
+    @ModelProperty
     public String getSiteArea() {
         return this.siteArea;
     }
@@ -39,6 +42,7 @@ public class TechnicalData {
         this.siteArea = siteArea;
     }
 
+    @ModelProperty
     public TechnicalDevice[] getAllPanels() {
         return this.panels;
     }
@@ -47,22 +51,12 @@ public class TechnicalData {
         return this.panels[index];
     }
 
+    @ModelProperty
     public TechnicalDevice[] getAllInverters() {
         return this.inverters;
     }
 
     public TechnicalDevice getInverterByIndex(int index) {
         return this.inverters[index];
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof TechnicalData))
-            return false;
-        TechnicalData p = (TechnicalData) obj;
-        return p.getNominalPower().equals(this.nominalPower) &&
-                p.getSiteArea().equals(this.siteArea) &&
-                p.getAllInverters().equals(this.inverters) &&
-                p.getAllPanels().equals(this.panels);
     }
 }

@@ -1,8 +1,10 @@
 package com.meteocontrol.client.models;
 
+import com.meteocontrol.client.models.annotation.ModelProperty;
+
 import java.util.Date;
 
-public class CommentDetail {
+public class CommentDetail extends BaseModel {
     private int commentId;
     private Date date;
     private String comment;
@@ -18,6 +20,7 @@ public class CommentDetail {
         this.username = username;
     }
 
+    @ModelProperty
     public int getCommentId() {
         return commentId;
     }
@@ -26,6 +29,7 @@ public class CommentDetail {
         this.commentId = commentId;
     }
 
+    @ModelProperty
     public Date getDate() {
         return date;
     }
@@ -34,6 +38,7 @@ public class CommentDetail {
         this.date = date;
     }
 
+    @ModelProperty
     public String getComment() {
         return comment;
     }
@@ -42,23 +47,13 @@ public class CommentDetail {
         this.comment = comment;
     }
 
+    @ModelProperty
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof CommentDetail))
-            return false;
-        CommentDetail p = (CommentDetail) obj;
-        return p.getCommentId() == this.commentId &&
-                p.getDate().equals(this.date) &&
-                p.getComment().equals(this.comment) &&
-                p.getUsername().equals(this.username);
     }
 
     public boolean isValid() {

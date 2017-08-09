@@ -1,7 +1,9 @@
 package com.meteocontrol.client.models.bulk;
+import com.meteocontrol.client.models.BaseModel;
+import com.meteocontrol.client.models.annotation.ModelProperty;
 import com.meteocontrol.client.writer.Writer;
 
-public class BulkMeasurements {
+public class BulkMeasurements extends BaseModel {
 
     private String rawData =null;
 
@@ -16,19 +18,12 @@ public class BulkMeasurements {
         this.rawData = rawData;
     }
 
+    @ModelProperty
     public String getAsString() {
         return this.rawData;
     }
 
     public void write(Writer writer) {
         writer.write(this.rawData);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof BulkMeasurements))
-            return false;
-        BulkMeasurements p = (BulkMeasurements)obj;
-        return p.getAsString().equals(this.rawData) ;
     }
 }

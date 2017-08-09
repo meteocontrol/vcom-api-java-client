@@ -1,6 +1,8 @@
 package com.meteocontrol.client.models;
 
-public class MeterDetail {
+import com.meteocontrol.client.models.annotation.ModelProperty;
+
+public class MeterDetail extends BaseModel {
 
     private String id;
     private String name;
@@ -15,6 +17,7 @@ public class MeterDetail {
         this.address = address;
     }
 
+    @ModelProperty
     public String getId() {
         return this.id;
     }
@@ -23,6 +26,7 @@ public class MeterDetail {
         this.id = id;
     }
 
+    @ModelProperty
     public String getName() {
         return this.name;
     }
@@ -31,21 +35,12 @@ public class MeterDetail {
         this.name = name;
     }
 
+    @ModelProperty
     public String getAddress() {
         return this.address;
     }
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof MeterDetail))
-            return false;
-        MeterDetail p = (MeterDetail) obj;
-        return p.getId().equals(this.id) &&
-                p.getName().equals(this.name) &&
-                p.getAddress().equals(this.address);
     }
 }

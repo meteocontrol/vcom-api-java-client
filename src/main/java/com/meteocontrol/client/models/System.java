@@ -1,6 +1,8 @@
 package com.meteocontrol.client.models;
 
-public class System {
+import com.meteocontrol.client.models.annotation.ModelProperty;
+
+public class System extends BaseModel {
     private String key;
     private String name;
 
@@ -12,6 +14,7 @@ public class System {
         this.name = name;
     }
 
+    @ModelProperty
     public String getKey() {
         return key;
     }
@@ -20,6 +23,7 @@ public class System {
         this.key = key;
     }
 
+    @ModelProperty
     public String getName() {
         return name;
     }
@@ -28,12 +32,4 @@ public class System {
         this.name = name;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof System))
-            return false;
-        System p = (System)obj;
-        return p.getKey().equals(this.key) &&
-                p.getName().equals(this.name);
-    }
 }

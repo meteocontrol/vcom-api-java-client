@@ -1,6 +1,8 @@
 package com.meteocontrol.client.models;
 
-public class Inverter {
+import com.meteocontrol.client.models.annotation.ModelProperty;
+
+public class Inverter extends BaseModel {
 
     private String id;
     private String name;
@@ -15,6 +17,7 @@ public class Inverter {
         this.serial = serial;
     }
 
+    @ModelProperty
     public String getId() {
         return this.id;
     }
@@ -23,6 +26,7 @@ public class Inverter {
         this.id = id;
     }
 
+    @ModelProperty
     public String getName() {
         return this.name;
     }
@@ -31,22 +35,12 @@ public class Inverter {
         this.name = name;
     }
 
-
+    @ModelProperty
     public String getSerial() {
         return this.serial;
     }
 
     public void setSerial(String serial) {
         this.serial = serial;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Inverter))
-            return false;
-        Inverter p = (Inverter)obj;
-        return p.getId().equals(this.id) &&
-                p.getSerial().equals(this.serial) &&
-                p.getName().equals(this.name);
     }
 }

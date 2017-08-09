@@ -1,10 +1,11 @@
 package com.meteocontrol.client.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.meteocontrol.client.models.annotation.ModelProperty;
 
 import java.util.Date;
 
-public class SystemDetail {
+public class SystemDetail extends BaseModel {
     private Address address;
     private int elevation;
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="UTC")
@@ -25,6 +26,7 @@ public class SystemDetail {
         this.timezone = timezone;
     }
 
+    @ModelProperty
     public Address getAddress() {
         return address;
     }
@@ -33,6 +35,7 @@ public class SystemDetail {
         this.address = address;
     }
 
+    @ModelProperty
     public int getElevation() {
         return elevation;
     }
@@ -41,6 +44,7 @@ public class SystemDetail {
         this.elevation = elevation;
     }
 
+    @ModelProperty
     public Date getCommissionDate() {
         return commissionDate;
     }
@@ -49,6 +53,7 @@ public class SystemDetail {
         this.commissionDate = commissionDate;
     }
 
+    @ModelProperty
     public Coordinates getCoordinates() {
         return coordinates;
     }
@@ -57,6 +62,7 @@ public class SystemDetail {
         this.coordinates = coordinates;
     }
 
+    @ModelProperty
     public String getName() {
         return name;
     }
@@ -65,24 +71,12 @@ public class SystemDetail {
         this.name = name;
     }
 
+    @ModelProperty
     public Timezone getTimezone() {
         return timezone;
     }
 
     public void setTimezone(Timezone timezone) {
         this.timezone = timezone;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof SystemDetail))
-            return false;
-        SystemDetail p = (SystemDetail)obj;
-        return p.getName().equals(this.name) &&
-               p.getAddress().equals(this.address) &&
-               p.getCommissionDate().equals(this.commissionDate) &&
-               p.getCoordinates().equals(this.coordinates) &&
-               p.getElevation() == this.elevation &&
-               p.getTimezone().equals(this.timezone);
     }
 }

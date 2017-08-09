@@ -1,6 +1,8 @@
 package com.meteocontrol.client.models;
 
-public class Coordinates {
+import com.meteocontrol.client.models.annotation.ModelProperty;
+
+public class Coordinates extends BaseModel {
     private double latitude;
     private double longitude;
 
@@ -12,6 +14,7 @@ public class Coordinates {
         this.longitude = longitude;
     }
 
+    @ModelProperty
     public double getLatitude() {
         return latitude;
     }
@@ -20,20 +23,12 @@ public class Coordinates {
         this.latitude = latitude;
     }
 
+    @ModelProperty
     public double getLongitude() {
         return longitude;
     }
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Coordinates))
-            return false;
-        Coordinates p = (Coordinates)obj;
-        return p.getLatitude() == this.latitude &&
-               p.getLongitude() == this.longitude;
     }
 }

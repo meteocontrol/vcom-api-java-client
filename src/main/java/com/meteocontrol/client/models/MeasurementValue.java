@@ -1,8 +1,10 @@
 package com.meteocontrol.client.models;
 
+import com.meteocontrol.client.models.annotation.ModelProperty;
+
 import java.util.Date;
 
-public class MeasurementValue {
+public class MeasurementValue extends BaseModel {
     private Date timestamp;
     private String value;
 
@@ -14,6 +16,7 @@ public class MeasurementValue {
         this.value = value;
     }
 
+    @ModelProperty
     public Date getTimestamp() {
         return timestamp;
     }
@@ -22,6 +25,7 @@ public class MeasurementValue {
         this.timestamp = timestamp;
     }
 
+    @ModelProperty
     public String getValue() {
         return value;
     }
@@ -30,12 +34,4 @@ public class MeasurementValue {
         this.value = value;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof MeasurementValue))
-            return false;
-        MeasurementValue p = (MeasurementValue)obj;
-        return p.getTimestamp().equals(this.timestamp) &&
-                p.getValue().equals(this.value);
-    }
 }

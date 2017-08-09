@@ -2,6 +2,7 @@ package com.meteocontrol.client.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.meteocontrol.client.models.annotation.ModelProperty;
 import com.meteocontrol.client.params.TicketPriority;
 import com.meteocontrol.client.params.TicketStatus;
 import com.meteocontrol.client.params.TicketIncludedInReportType;
@@ -11,7 +12,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class Ticket {
+public class Ticket extends BaseModel {
     private int id;
     private String systemKey;
     private String designation;
@@ -67,6 +68,7 @@ public class Ticket {
 
     }
 
+    @ModelProperty
     public int getId() {
         return id;
     }
@@ -75,6 +77,7 @@ public class Ticket {
         this.id = id;
     }
 
+    @ModelProperty
     public String getSystemKey() {
         return systemKey;
     }
@@ -83,6 +86,7 @@ public class Ticket {
         this.systemKey = systemKey;
     }
 
+    @ModelProperty
     public String getDesignation() {
         return designation;
     }
@@ -91,6 +95,7 @@ public class Ticket {
         this.designation = designation;
     }
 
+    @ModelProperty
     public String getSummary() {
         return summary;
     }
@@ -99,6 +104,7 @@ public class Ticket {
         this.summary = summary;
     }
 
+    @ModelProperty
     public Date getDate() {
         return date;
     }
@@ -107,6 +113,7 @@ public class Ticket {
         this.date = date;
     }
 
+    @ModelProperty
     public Date getLastChange() {
         return lastChange;
     }
@@ -115,6 +122,7 @@ public class Ticket {
         this.lastChange = lastChange;
     }
 
+    @ModelProperty
     public Date getRectifiedOn() {
         return rectifiedOn;
     }
@@ -123,6 +131,7 @@ public class Ticket {
         this.rectifiedOn = rectifiedOn;
     }
 
+    @ModelProperty
     public String getAssignee() {
         return assignee;
     }
@@ -131,6 +140,7 @@ public class Ticket {
         this.assignee = assignee;
     }
 
+    @ModelProperty
     public TicketStatus getStatus() {
         return status;
     }
@@ -139,6 +149,7 @@ public class Ticket {
         this.status = status;
     }
 
+    @ModelProperty
     public Integer getCauseId() {
         return causeId;
     }
@@ -147,6 +158,7 @@ public class Ticket {
         this.causeId = causeId;
     }
 
+    @ModelProperty
     public TicketPriority getPriority() {
         return priority;
     }
@@ -155,6 +167,7 @@ public class Ticket {
         this.priority = priority;
     }
 
+    @ModelProperty
     public TicketIncludedInReportType getIncludeInReports() {
         return includeInReports;
     }
@@ -163,6 +176,7 @@ public class Ticket {
         this.includeInReports = includeInReports;
     }
 
+    @ModelProperty
     public String getDescription() {
         return this.description;
     }
@@ -171,6 +185,7 @@ public class Ticket {
         this.description = description;
     }
 
+    @ModelProperty
     public Boolean getFieldService() {
         return fieldService;
     }
@@ -179,6 +194,7 @@ public class Ticket {
         this.fieldService = fieldService;
     }
 
+    @ModelProperty
     public TicketSeverity getSeverity() {
         return severity;
     }

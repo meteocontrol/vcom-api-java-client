@@ -12,7 +12,8 @@ public class Config {
         "API_URL",
         "API_KEY",
         "API_USERNAME",
-        "API_PASSWORD"
+        "API_PASSWORD",
+        "API_AUTH_MODE"
     };
 
     public Config() {
@@ -60,6 +61,14 @@ public class Config {
 
     public void setApiPassword(String password) {
         this.config.setProperty("API_PASSWORD", password);
+    }
+
+    public String getApiAuthorizationMode() {
+        return this.config.getProperty("API_AUTH_MODE");
+    }
+
+    public void setApiAuthorizationMode(String authorizationMode) {
+        this.config.setProperty("API_AUTH_MODE", authorizationMode);
     }
 
     public void validate() {

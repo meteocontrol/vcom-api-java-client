@@ -57,4 +57,14 @@ public class Ticket extends SubEndpoint {
         CommentId commentIdEndpoint = new CommentId(comments, String.valueOf(commentId));
         return new Comment(commentIdEndpoint);
     }
+
+    public Attachments attachments() {
+        return new Attachments(this);
+    }
+
+    public Attachment attachment(int attachmentId) {
+        Attachments attachments = new Attachments(this);
+        AttachmentId attachmentIdEndpoint = new AttachmentId(attachments, String.valueOf(attachmentId));
+        return new Attachment(attachmentIdEndpoint);
+    }
 }

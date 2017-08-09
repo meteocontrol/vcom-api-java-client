@@ -1,25 +1,24 @@
 package com.meteocontrol.client;
 
 import com.meteocontrol.client.exceptions.ApiClientException;
+import com.meteocontrol.client.handlers.AuthorizationHandlerInterface;
 import com.meteocontrol.client.params.ApiMethods;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.*;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.io.EmptyInputStream;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
-import sun.misc.BASE64Encoder;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -37,9 +36,11 @@ public class HttpClient {
     private Header[] headers;
     private HttpClientContext context;
     private org.apache.http.client.HttpClient client;
+    private AuthorizationHandlerInterface authorizationHandler;
 
-    public HttpClient(Config config) {
+    public HttpClient(Config config, AuthorizationHandlerInterface authorizationHandler) {
         this.config = config;
+        this.authorizationHandler = authorizationHandler;
         URL url;
         try {
             url = new URL(this.config.getApiUrl());
@@ -68,16 +69,28 @@ public class HttpClient {
             }
 
             request = this.prepareRequest(method, url, body);
-            request.setHeaders(this.headers);
+            request.setHeaders(this.authorizationHandler.appendAuthorizationHeader(this.client, this.headers));
 
             HttpResponse response = this.client.execute(request, this.context);
-            HttpEntity entity = response.getEntity();
+            String responseContent = EntityUtils.toString(response.getEntity());
+            if (response.getStatusLine().getStatusCode() >= 400) {
+                if (response.getStatusLine().getStatusCode() == 401) {
+                    this.authorizationHandler.handleUnauthorizedException(responseContent, 401, this.client);
+                } else {
+                    throw new ApiClientException(
+                            responseContent,
+                            response.getStatusLine().getStatusCode()
+                    );
+                }
+            }
 
             if (this.isLimitationReached(response)) {
                 this.waitUntilReset(response);
             }
-            return EntityUtils.toString(entity);
-        } catch (Exception e) {
+            return responseContent;
+        } catch (ApiClientException e) {
+            throw e;
+        } catch (IOException | InterruptedException e) {
             throw new ApiClientException(e.getMessage());
         }
     }
@@ -119,35 +132,15 @@ public class HttpClient {
     }
 
     private void createHttpClient() {
-        UsernamePasswordCredentials credentials;
-        BasicCredentialsProvider credentialsProvider;
-
-        credentials = new UsernamePasswordCredentials(
-                config.getApiUsername(),
-                config.getApiPassword()
-        );
-        credentialsProvider = new BasicCredentialsProvider();
-        credentialsProvider.setCredentials(
-                new AuthScope(this.baseUri.getHost(), AuthScope.ANY_PORT),
-                credentials
-        );
         this.context = HttpClientContext.create();
-        this.context.setCredentialsProvider(credentialsProvider);
         this.client = HttpClients.createDefault();
     }
 
     private void createDefaultHeaders() throws UnsupportedEncodingException {
         this.headers = new Header[]{
                 new BasicHeader("X-API-KEY", this.config.getApiKey()),
-                new BasicHeader("Authorization", this.getBasicAuthString()),
                 new BasicHeader("Accept", "*/*")
         };
-    }
-
-    private String getBasicAuthString() throws UnsupportedEncodingException {
-        BASE64Encoder encoder = new BASE64Encoder();
-        byte[] payload = (this.config.getApiUsername() + ":" + this.config.getApiPassword()).getBytes("UTF-8");
-        return "Basic " + encoder.encode(payload);
     }
 
     private boolean isLimitationReached(HttpResponse response) {

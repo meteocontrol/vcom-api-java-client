@@ -1,6 +1,8 @@
 package com.meteocontrol.client.models;
 
-public class Timezone {
+import com.meteocontrol.client.models.annotation.ModelProperty;
+
+public class Timezone extends BaseModel {
     private String name;
     private String utcOffset;
 
@@ -12,6 +14,7 @@ public class Timezone {
         this.utcOffset = utcOffset;
     }
 
+    @ModelProperty
     public String getName() {
         return name;
     }
@@ -20,20 +23,12 @@ public class Timezone {
         this.name = name;
     }
 
+    @ModelProperty
     public String getUtcOffset() {
         return utcOffset;
     }
 
     public void setUtcOffset(String utcOffset) {
         this.utcOffset = utcOffset;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Timezone))
-            return false;
-        Timezone p = (Timezone)obj;
-        return p.getName().equals(this.name) &&
-               p.getUtcOffset().equals(this.utcOffset);
     }
 }

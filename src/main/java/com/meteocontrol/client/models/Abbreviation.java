@@ -1,9 +1,10 @@
 package com.meteocontrol.client.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.meteocontrol.client.models.annotation.ModelProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Abbreviation {
+public class Abbreviation extends BaseModel {
     private String aggregation;
     private String precision;
     private String description;
@@ -29,6 +30,7 @@ public class Abbreviation {
         this.comprehension = comprehension;
     }
 
+    @ModelProperty
     public String getAggregation() {
         return aggregation;
     }
@@ -37,6 +39,7 @@ public class Abbreviation {
         this.aggregation = aggregation;
     }
 
+    @ModelProperty
     public String getPrecision() {
         return precision;
     }
@@ -45,6 +48,7 @@ public class Abbreviation {
         this.precision = precision;
     }
 
+    @ModelProperty
     public String getDescription() {
         return description;
     }
@@ -53,6 +57,7 @@ public class Abbreviation {
         this.description = description;
     }
 
+    @ModelProperty
     public String getUnit() {
         return unit;
     }
@@ -61,22 +66,12 @@ public class Abbreviation {
         this.unit = unit;
     }
 
+    @ModelProperty
     public String getComprehension() {
         return comprehension;
     }
 
     public void setComprehension(String comprehension) {
         this.comprehension = comprehension;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Abbreviation))
-            return false;
-        Abbreviation p = (Abbreviation) obj;
-        return p.getAggregation().equals(this.aggregation) &&
-                p.getPrecision().equals(this.precision) &&
-                p.getDescription().equals(this.description) &&
-                p.getUnit().equals(this.unit);
     }
 }

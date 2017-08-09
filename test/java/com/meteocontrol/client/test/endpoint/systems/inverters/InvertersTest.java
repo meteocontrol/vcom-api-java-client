@@ -13,6 +13,7 @@ import com.meteocontrol.client.params.BulkResponseFormat;
 import com.meteocontrol.client.params.Resolutions;
 import com.meteocontrol.client.params.bulkCsv.CsvDecimalPoint;
 import com.meteocontrol.client.params.bulkCsv.CsvDelimiter;
+import com.meteocontrol.client.test.TestParameters;
 import com.meteocontrol.client.test.TestUtils;
 import org.junit.Before;
 import org.junit.Rule;
@@ -87,7 +88,8 @@ public class InvertersTest {
                 "PVL-L0250",
                 "TMEIC",
                 "12837",
-                "PCS 2.C09.E18"
+                "PCS 2.C09.E18",
+                24.01f
         );
 
         assertEquals(expectedInverterDetail.getName(), inverterDetail.getName());
@@ -95,6 +97,11 @@ public class InvertersTest {
         assertEquals(expectedInverterDetail.getModel(), inverterDetail.getModel());
         assertEquals(expectedInverterDetail.getSerial(), inverterDetail.getSerial());
         assertEquals(expectedInverterDetail.getVendor(), inverterDetail.getVendor());
+        assertEquals(
+                expectedInverterDetail.getScaleFactor(),
+                inverterDetail.getScaleFactor(),
+                TestParameters.FLOAT_DELTA
+        );
     }
 
     @Test

@@ -2,20 +2,24 @@ package com.meteocontrol.client.endpoints.sub.systems;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.meteocontrol.client.endpoints.EndpointInterface;
 import com.meteocontrol.client.endpoints.sub.SubEndpoint;
+import com.meteocontrol.client.endpoints.sub.systems.basics.Basics;
+import com.meteocontrol.client.endpoints.sub.systems.batteries.Batteries;
+import com.meteocontrol.client.endpoints.sub.systems.batteries.Battery;
+import com.meteocontrol.client.endpoints.sub.systems.bulk.Bulk;
 import com.meteocontrol.client.endpoints.sub.systems.calculations.Calculations;
 import com.meteocontrol.client.endpoints.sub.systems.inverters.Inverter;
 import com.meteocontrol.client.endpoints.sub.systems.inverters.Inverters;
+import com.meteocontrol.client.endpoints.sub.systems.meters.Meter;
 import com.meteocontrol.client.endpoints.sub.systems.meters.Meters;
+import com.meteocontrol.client.endpoints.sub.systems.responsibilities.Responsibilities;
 import com.meteocontrol.client.endpoints.sub.systems.sensors.Sensor;
 import com.meteocontrol.client.endpoints.sub.systems.sensors.Sensors;
+import com.meteocontrol.client.endpoints.sub.systems.stringboxes.Stringbox;
+import com.meteocontrol.client.endpoints.sub.systems.stringboxes.Stringboxes;
 import com.meteocontrol.client.endpoints.sub.systems.technicalData.TechnicalData;
 import com.meteocontrol.client.models.SystemDetail;
-import com.meteocontrol.client.endpoints.EndpointInterface;
-import com.meteocontrol.client.endpoints.sub.systems.basics.Basics;
-import com.meteocontrol.client.endpoints.sub.systems.bulk.Bulk;
-import com.meteocontrol.client.endpoints.sub.systems.meters.Meter;
-import com.meteocontrol.client.endpoints.sub.systems.stringboxes.Stringboxes;
 
 import java.io.IOException;
 
@@ -69,6 +73,16 @@ public class System extends SubEndpoint {
         return new Meter(device);
     }
 
+    public Batteries batteries() { return new Batteries(this); }
+
+    public Battery battery(String batteryId) {
+        return new Battery(new DeviceId(new Batteries(this), batteryId));
+    }
+
+    public Battery battery(String[] batteryIds) {
+        return new Battery(new DeviceId(new Batteries(this), batteryIds));
+    }
+
     public Sensors sensors() {
         return new Sensors(this);
     }
@@ -83,6 +97,17 @@ public class System extends SubEndpoint {
         return new Sensor(device);
     }
 
+    public Stringbox stringbox(String stringboxId) {
+        DeviceId device = new DeviceId(new Stringboxes(this), stringboxId);
+        return new Stringbox(device);
+    }
+
+    public Stringbox stringbox(String[] stringboxIds) {
+        DeviceId device = new DeviceId(new Stringboxes(this), stringboxIds);
+        return new Stringbox(device);
+    }
+
+
     public Stringboxes stringboxes() {
         return new Stringboxes(this);
     }
@@ -93,5 +118,19 @@ public class System extends SubEndpoint {
 
     public TechnicalData technicalData() {
         return new TechnicalData(this);
+    }
+
+    public Users users() {
+        return new Users(this);
+    }
+
+    public User user(String userId) {
+        Users users = new Users(this);
+        UserId userIdEndpoint = new UserId(users, userId);
+        return new User(userIdEndpoint);
+    }
+
+    public Responsibilities responsibilities() {
+        return new Responsibilities(this);
     }
 }

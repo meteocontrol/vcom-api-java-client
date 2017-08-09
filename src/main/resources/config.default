@@ -2,4 +2,4 @@ API_URL = https://api.meteocontrol.de
 API_KEY =
 API_USERNAME =
 API_PASSWORD =
-
+API_AUTH_MODE = basic

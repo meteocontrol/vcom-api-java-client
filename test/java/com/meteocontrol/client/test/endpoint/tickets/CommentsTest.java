@@ -1,14 +1,11 @@
 package com.meteocontrol.client.test.endpoint.tickets;
 
 import com.meteocontrol.client.ApiClient;
-import com.meteocontrol.client.Config;
-import com.meteocontrol.client.Factory;
 import com.meteocontrol.client.HttpClient;
 import com.meteocontrol.client.models.Comment;
 import com.meteocontrol.client.models.CommentDetail;
 import com.meteocontrol.client.params.ApiMethods;
 import com.meteocontrol.client.test.TestUtils;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

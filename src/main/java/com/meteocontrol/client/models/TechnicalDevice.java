@@ -1,7 +1,9 @@
 package com.meteocontrol.client.models;
 
 
-public class TechnicalDevice {
+import com.meteocontrol.client.models.annotation.ModelProperty;
+
+public class TechnicalDevice extends BaseModel {
     private String vendor;
     private String model;
     private String count;
@@ -15,6 +17,7 @@ public class TechnicalDevice {
         this.count = count;
     }
 
+    @ModelProperty
     public String getVendor() {
         return this.vendor;
     }
@@ -23,6 +26,7 @@ public class TechnicalDevice {
         this.vendor = vendor;
     }
 
+    @ModelProperty
     public String getModel() {
         return this.model;
     }
@@ -31,21 +35,12 @@ public class TechnicalDevice {
         this.model = model;
     }
 
+    @ModelProperty
     public String getCount() {
         return this.count;
     }
 
     public void setCount(String count) {
         this.count = count;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof TechnicalDevice))
-            return false;
-        TechnicalDevice p = (TechnicalDevice) obj;
-        return p.getCount().equals(this.count) &&
-                p.getModel().equals(this.model) &&
-                p.getVendor().equals(this.vendor);
     }
 }

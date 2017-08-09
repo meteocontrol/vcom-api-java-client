@@ -1,6 +1,8 @@
 package com.meteocontrol.client.models;
 
-public class Sensor {
+import com.meteocontrol.client.models.annotation.ModelProperty;
+
+public class Sensor extends BaseModel {
 
     private String id;
     private String name;
@@ -13,6 +15,7 @@ public class Sensor {
         this.name = name;
     }
 
+    @ModelProperty
     public String getId() {
         return this.id;
     }
@@ -21,20 +24,12 @@ public class Sensor {
         this.id = id;
     }
 
+    @ModelProperty
     public String getName() {
         return this.name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Sensor))
-            return false;
-        Sensor p = (Sensor)obj;
-        return p.getId().equals(this.id) &&
-                p.getName().equals(this.name);
     }
 }

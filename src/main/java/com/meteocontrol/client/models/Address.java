@@ -1,10 +1,12 @@
 package com.meteocontrol.client.models;
 
-public class Address {
-    private String city;
-    private String country;
-    private String postalCode;
-    private String street;
+import com.meteocontrol.client.models.annotation.ModelProperty;
+
+public class Address extends BaseModel {
+    protected String city;
+    protected String country;
+    protected String postalCode;
+    protected String street;
 
     public Address() {
     }
@@ -16,6 +18,7 @@ public class Address {
         this.street = street;
     }
 
+    @ModelProperty
     public String getCity() {
         return city;
     }
@@ -24,6 +27,7 @@ public class Address {
         this.city = city;
     }
 
+    @ModelProperty
     public String getCountry() {
         return country;
     }
@@ -32,6 +36,7 @@ public class Address {
         this.country = country;
     }
 
+    @ModelProperty
     public String getPostalCode() {
         return postalCode;
     }
@@ -40,6 +45,7 @@ public class Address {
         this.postalCode = postalCode;
     }
 
+    @ModelProperty
     public String getStreet() {
         return street;
     }
@@ -48,14 +54,4 @@ public class Address {
         this.street = street;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Address))
-            return false;
-        Address p = (Address)obj;
-        return p.getCity().equals(this.city) &&
-               p.getCountry().equals(this.country) &&
-               p.getPostalCode().equals(this.postalCode) &&
-               p.getStreet().equals(this.street);
-    }
 }

@@ -3,7 +3,6 @@ package com.meteocontrol.client.test;
 import com.meteocontrol.client.filters.MeasurementsCriteria;
 import com.meteocontrol.client.models.MeasurementValue;
 import com.meteocontrol.client.params.Resolutions;
-
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,7 +10,6 @@ import java.util.Scanner;
 import java.util.TimeZone;
 
 public class TestUtils {
-
 
     public static String readJsonFile(String path) {
         InputStream stream = TestUtils.class.getClass().getResourceAsStream(path);
