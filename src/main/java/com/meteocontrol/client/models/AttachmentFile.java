@@ -1,6 +1,7 @@
 package com.meteocontrol.client.models;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.meteocontrol.client.models.annotation.ModelProperty;
 
 import java.lang.*;
@@ -8,6 +9,7 @@ import java.util.Base64;
 
 public class AttachmentFile extends BaseModel {
 
+    private int id;
     private String filename;
     private String content;
     private static Base64.Decoder decoder = Base64.getDecoder();
@@ -25,6 +27,12 @@ public class AttachmentFile extends BaseModel {
         this.filename = filename;
         this.content = this.encodeContent(content);
     }
+
+    @ModelProperty
+    @JsonProperty("attachmentId")
+    public int getId() { return this.id; }
+
+    public void setId(int id) { this.id = id; }
 
     @ModelProperty
     public String getFilename() {

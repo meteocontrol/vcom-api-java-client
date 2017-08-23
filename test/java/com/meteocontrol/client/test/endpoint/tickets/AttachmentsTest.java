@@ -66,6 +66,7 @@ public class AttachmentsTest {
                 .execute(ApiMethods.GET, "/tickets/123/attachments/1234", null, null);
         byte[] testContent = Files.readAllBytes(Paths.get("test/resources/responses/tickets/test.jpg"));
         assertArrayEquals(testContent, attachment.getDecodedContent());
+        assertEquals(1234, attachment.getId());
         assertEquals("test.jpg", attachment.getFilename());
     }
 
