@@ -5,23 +5,71 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum TicketSeverity {
+public enum TicketSeverity implements CharSequence {
     NORMAL {
+        private String value = "normal";
+        @Override
+        public int length() {
+            return value.length();
+        }
+
+        @Override
+        public char charAt(int i) {
+            return value.charAt(i);
+        }
+
+        @Override
+        public CharSequence subSequence(int i, int i1) {
+            return value.subSequence(i, i1);
+        }
+
         @Override
         public String toString() {
-            return "normal";
+            return value;
         }
     },
     HIGH {
+        private String value = "high";
+        @Override
+        public int length() {
+            return value.length();
+        }
+
+        @Override
+        public char charAt(int i) {
+            return value.charAt(i);
+        }
+
+        @Override
+        public CharSequence subSequence(int i, int i1) {
+            return value.subSequence(i, i1);
+        }
+
         @Override
         public String toString() {
-            return "high";
+            return value;
         }
     },
     CRITICAL {
+        private String value = "critical";
+        @Override
+        public int length() {
+            return value.length();
+        }
+
+        @Override
+        public char charAt(int i) {
+            return value.charAt(i);
+        }
+
+        @Override
+        public CharSequence subSequence(int i, int i1) {
+            return value.subSequence(i, i1);
+        }
+
         @Override
         public String toString() {
-            return "critical";
+            return value;
         }
     };
 

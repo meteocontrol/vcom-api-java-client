@@ -17,6 +17,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -65,9 +67,13 @@ public class AttachmentsTest {
         verify(http, times(1))
                 .execute(ApiMethods.GET, "/tickets/123/attachments/1234", null, null);
         byte[] testContent = Files.readAllBytes(Paths.get("test/resources/responses/tickets/test.jpg"));
-        assertArrayEquals(testContent, attachment.getDecodedContent());
-        assertEquals(1234, attachment.getId());
-        assertEquals("test.jpg", attachment.getFilename());
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+        simpleDate.setTimeZone(TimeZone.getTimeZone("UTC"));
+        AttachmentFile expectedFile = new AttachmentFile("test.jpg", testContent, "test attachment");
+        expectedFile.setId(1234);
+        expectedFile.setCreatorId(12345);
+        expectedFile.setCreated(simpleDate.parse("2017-08-29T03:22:23+00:00"));
+        assertEquals(expectedFile, attachment);
     }
 
     @Test
@@ -75,7 +81,7 @@ public class AttachmentsTest {
         String expectedBody = TestUtils.readJsonFile("/responses/tickets/PostAttachment.json");
         String expectedJson = TestUtils.readJsonFile("/responses/tickets/PostAttachmentResult.json");
         byte[] testImageContent = Files.readAllBytes(Paths.get("test/resources/responses/tickets/test.jpg"));
-        AttachmentFile expectedFile = new AttachmentFile("test.jpg", testImageContent);
+        AttachmentFile expectedFile = new AttachmentFile("test.jpg", testImageContent, "test attachment");
         when(http.execute(ApiMethods.POST, "/tickets/123/attachments", null, expectedBody))
                 .thenReturn(expectedJson);
         Attachment attachment = client.ticket("123").attachments().create(expectedFile);

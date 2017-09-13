@@ -5,29 +5,96 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum TicketPriority {
+public enum TicketPriority implements CharSequence {
     LOW {
+        private String value = "low";
+        @Override
+        public int length() {
+            return value.length();
+        }
+
+        @Override
+        public char charAt(int i) {
+            return value.charAt(i);
+        }
+
+        @Override
+        public CharSequence subSequence(int i, int i1) {
+            return value.subSequence(i, i1);
+        }
+
         @Override
         public String toString() {
-            return "low";
+            return value;
         }
     },
+
     NORMAL {
+        private String value = "normal";
+        @Override
+        public int length() {
+            return value.length();
+        }
+
+        @Override
+        public char charAt(int i) {
+            return value.charAt(i);
+        }
+
+        @Override
+        public CharSequence subSequence(int i, int i1) {
+            return value.subSequence(i, i1);
+        }
+
         @Override
         public String toString() {
-            return "normal";
+            return value;
         }
     },
+
     HIGH {
+        private String value = "high";
+        @Override
+        public int length() {
+            return value.length();
+        }
+
+        @Override
+        public char charAt(int i) {
+            return value.charAt(i);
+        }
+
+        @Override
+        public CharSequence subSequence(int i, int i1) {
+            return value.subSequence(i, i1);
+        }
+
         @Override
         public String toString() {
-            return "high";
+            return value;
         }
     },
+
     URGENT {
+        private String value = "urgent";
+        @Override
+        public int length() {
+            return value.length();
+        }
+
+        @Override
+        public char charAt(int i) {
+            return value.charAt(i);
+        }
+
+        @Override
+        public CharSequence subSequence(int i, int i1) {
+            return value.subSequence(i, i1);
+        }
+
         @Override
         public String toString() {
-            return "urgent";
+            return value;
         }
     };
 

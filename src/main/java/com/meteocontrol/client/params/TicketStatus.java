@@ -5,35 +5,115 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum TicketStatus {
+public enum TicketStatus implements CharSequence {
     OPEN {
+        private String value = "open";
+        @Override
+        public int length() {
+            return value.length();
+        }
+
+        @Override
+        public char charAt(int i) {
+            return value.charAt(i);
+        }
+
+        @Override
+        public CharSequence subSequence(int i, int i1) {
+            return value.subSequence(i, i1);
+        }
+
         @Override
         public String toString() {
-            return "open";
+            return value;
         }
     },
     CLOSED {
+        private String value = "closed";
+        @Override
+        public int length() {
+            return value.length();
+        }
+
+        @Override
+        public char charAt(int i) {
+            return value.charAt(i);
+        }
+
+        @Override
+        public CharSequence subSequence(int i, int i1) {
+            return value.subSequence(i, i1);
+        }
+
         @Override
         public String toString() {
-            return "closed";
+            return value;
         }
     },
     DELETED {
+        private String value = "deleted";
+        @Override
+        public int length() {
+            return value.length();
+        }
+
+        @Override
+        public char charAt(int i) {
+            return value.charAt(i);
+        }
+
+        @Override
+        public CharSequence subSequence(int i, int i1) {
+            return value.subSequence(i, i1);
+        }
+
         @Override
         public String toString() {
-            return "deleted";
+            return value;
         }
     },
     ASSIGNED {
+        private String value = "assigned";
+        @Override
+        public int length() {
+            return value.length();
+        }
+
+        @Override
+        public char charAt(int i) {
+            return value.charAt(i);
+        }
+
+        @Override
+        public CharSequence subSequence(int i, int i1) {
+            return value.subSequence(i, i1);
+        }
+
         @Override
         public String toString() {
-            return "assigned";
+            return value;
         }
     },
     INPROGRESS {
+        private String value = "inProgress";
+        @Override
+        public int length() {
+            return value.length();
+        }
+
+        @Override
+        public char charAt(int i) {
+            return value.charAt(i);
+        }
+
+        @Override
+        public CharSequence subSequence(int i, int i1) {
+            return value.subSequence(i, i1);
+        }
+
         @Override
         public String toString() {
-            return "inProgress";
+            return value;
         }
     };
 

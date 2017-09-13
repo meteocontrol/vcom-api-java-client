@@ -67,4 +67,8 @@ public class Ticket extends SubEndpoint {
         AttachmentId attachmentIdEndpoint = new AttachmentId(attachments, String.valueOf(attachmentId));
         return new Attachment(attachmentIdEndpoint);
     }
+
+    public TicketHistories histories() {
+        return new TicketHistories(this);
+    }
 }

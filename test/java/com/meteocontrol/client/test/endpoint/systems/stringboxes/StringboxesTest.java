@@ -81,12 +81,13 @@ public class StringboxesTest {
         StringboxDetail stringboxDetail = systemEndpoint.stringbox("12345").get();
         verify(http, times(1)).execute(ApiMethods.GET, "/systems/ABCDE/stringboxes/12345", null, null);
         StringboxDetail expectedStringboxDetail = new StringboxDetail(
-                "12345", "stringbox1", "abcd"
+                "12345", "stringbox1", "abcd", 2.0f
         );
 
         assertEquals(expectedStringboxDetail.getName(), stringboxDetail.getName());
         assertEquals(expectedStringboxDetail.getId(), stringboxDetail.getId());
         assertEquals(expectedStringboxDetail.getSerial(), stringboxDetail.getSerial());
+        assertEquals(expectedStringboxDetail.getScaleFactor(), stringboxDetail.getScaleFactor(), 0.01f);
     }
 
     @Test

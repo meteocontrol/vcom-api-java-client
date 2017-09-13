@@ -1,10 +1,7 @@
 package com.meteocontrol.client.filters;
 
 import com.meteocontrol.client.exceptions.ApiClientException;
-import com.meteocontrol.client.params.TicketIncludedInReportType;
-import com.meteocontrol.client.params.TicketPriority;
-import com.meteocontrol.client.params.TicketSeverity;
-import com.meteocontrol.client.params.TicketStatus;
+import com.meteocontrol.client.params.*;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -109,12 +106,22 @@ public class TicketsCriteria {
         return this;
     }
 
+    public TicketsCriteria withIncludeInReports(TicketIncludedInReportType[] includeInReports) {
+        this.filters.put("includeInReports", String.join(",", includeInReports));
+        return this;
+    }
+
     public TicketStatus getStatus() {
         return Enum.valueOf(TicketStatus.class, this.filters.get("status"));
     }
 
     public TicketsCriteria withStatus(TicketStatus status) {
         this.filters.put("status", status.toString());
+        return this;
+    }
+
+    public TicketsCriteria withStatus(TicketStatus[] statuses) {
+        this.filters.put("status", String.join(",", statuses));
         return this;
     }
 
@@ -127,12 +134,22 @@ public class TicketsCriteria {
         return this;
     }
 
+    public TicketsCriteria withSeverity(TicketSeverity[] severities) {
+        this.filters.put("severity", String.join(",", severities));
+        return this;
+    }
+
     public TicketPriority getPriority() {
         return Enum.valueOf(TicketPriority.class, this.filters.get("priority"));
     }
 
     public TicketsCriteria withPriority(TicketPriority priority) {
         this.filters.put("priority", priority.toString());
+        return this;
+    }
+
+    public TicketsCriteria withPriority(TicketPriority[] priorities) {
+        this.filters.put("priority", String.join(",", priorities));
         return this;
     }
 
@@ -145,12 +162,22 @@ public class TicketsCriteria {
         return this;
     }
 
+    public TicketsCriteria withAssignee(String[] assignees) {
+        this.filters.put("assignee", String.join(",", assignees));
+        return this;
+    }
+
     public String getSystemKey() {
         return this.filters.get("systemKey");
     }
 
     public TicketsCriteria withSystemKey(String systemKey) {
         this.filters.put("systemKey", systemKey);
+        return this;
+    }
+
+    public TicketsCriteria withSystemKey(String[] systemKey) {
+        this.filters.put("systemKey", String.join(",", systemKey));
         return this;
     }
 

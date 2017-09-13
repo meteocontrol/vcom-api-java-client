@@ -6,12 +6,16 @@ import com.meteocontrol.client.models.annotation.ModelProperty;
 
 import java.lang.*;
 import java.util.Base64;
+import java.util.Date;
 
 public class AttachmentFile extends BaseModel {
 
     private int id;
     private String filename;
     private String content;
+    private String description;
+    private int creatorId;
+    private Date created;
     private static Base64.Decoder decoder = Base64.getDecoder();
     private static Base64.Encoder encoder = Base64.getEncoder();
 
@@ -26,6 +30,12 @@ public class AttachmentFile extends BaseModel {
     public AttachmentFile(String filename, byte[] content) {
         this.filename = filename;
         this.content = this.encodeContent(content);
+    }
+
+    public AttachmentFile(String filename, byte[] content, String description) {
+        this.filename = filename;
+        this.content = this.encodeContent(content);
+        this.description = description;
     }
 
     @ModelProperty
@@ -58,6 +68,33 @@ public class AttachmentFile extends BaseModel {
 
     public void setContent(byte[] content) {
         this.content = this.encodeContent(content);
+    }
+
+    @ModelProperty
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @ModelProperty
+    public Date getCreated() {
+        return this.created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    @ModelProperty
+    public int getCreatorId() {
+        return this.creatorId;
+    }
+
+    public void setCreatorId(int creatorId) {
+        this.creatorId = creatorId;
     }
 
     private String encodeContent(byte[] content) {

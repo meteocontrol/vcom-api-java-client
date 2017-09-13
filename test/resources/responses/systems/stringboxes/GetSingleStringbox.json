@@ -2,6 +2,7 @@
   "data": {
     "id": "12345",
     "name": "stringbox1",
-    "serial" : "abcd"
+    "serial" : "abcd",
+    "scaleFactor": 2.0
   }
 }

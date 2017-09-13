@@ -34,6 +34,7 @@ public class Attachments extends SubEndpoint {
         ObjectNode root = mapper.createObjectNode();
         root.put("filename", file.getFilename());
         root.put("content", file.getContent());
+        root.put("description", file.getDescription());
         String responseJson = this.api.run(this.getUrl(), null, root.toString(), ApiMethods.POST);
         JsonNode rootNode = mapper.readValue(responseJson, JsonNode.class);
         return mapper.readValue(rootNode.get("data").toString(), Attachment.class);
