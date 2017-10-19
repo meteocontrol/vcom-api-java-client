@@ -5,7 +5,10 @@ import com.meteocontrol.client.models.annotation.ModelProperty;
 import java.util.Date;
 
 public class TicketHistory extends BaseModel {
+
+    @Deprecated
     private Date timestamp;
+    private Date createdAt;
     private String action;
     private String personInCharge;
     private String from;
@@ -14,7 +17,7 @@ public class TicketHistory extends BaseModel {
     public TicketHistory() {}
 
     public TicketHistory(Date timestamp, String action, String personInCharge, String from, String to) {
-        this.timestamp = timestamp;
+        this.createdAt = this.timestamp = timestamp;
         this.action = action;
         this.personInCharge = personInCharge;
         this.from = from;
@@ -40,12 +43,23 @@ public class TicketHistory extends BaseModel {
     }
 
     @ModelProperty
+    @Deprecated
     public Date getTimestamp() {
         return timestamp;
     }
 
+    @Deprecated
     public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+        this.createdAt = this.timestamp = timestamp;
+    }
+
+    @ModelProperty
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.timestamp = this.createdAt = createdAt;
     }
 
     @ModelProperty

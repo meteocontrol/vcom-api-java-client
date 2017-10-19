@@ -36,7 +36,7 @@ public class Ticket extends SubEndpoint {
         root.put("designation", ticket.getDesignation());
         root.put("description", ticket.getDescription());
         root.put("summary", ticket.getSummary());
-        root.put("date", dateFormat.format(ticket.getDate()));
+        root.put("createdAt", dateFormat.format(ticket.getCreatedAt()));
         root.put("includeInReports", ticket.getIncludeInReports().toString());
         root.put("status", ticket.getStatus().toString());
         root.put("priority", ticket.getPriority().toString());

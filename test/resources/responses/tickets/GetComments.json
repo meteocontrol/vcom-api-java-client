@@ -3,12 +3,14 @@
     {
       "commentId": 661288,
       "date": "2016-02-19T12:49:20+01:00",
+      "createdAt": "2016-02-19T15:49:20+04:00",
       "comment": "Comment text",
       "username": "Username"
     },
     {
       "commentId": 661286,
       "date": "2016-02-19T12:49:07+01:00",
+      "createdAt": "2016-02-19T15:49:07+04:00",
       "comment": "Comment text",
       "username": "Username"
     }

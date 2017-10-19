@@ -41,15 +41,14 @@ public class TicketsTest {
         String expectedJson = TestUtils.readJsonFile("/responses/tickets/GetTickets.json");
 
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
-        simpleDate.setTimeZone(TimeZone.getTimeZone("UTC"));
 
         TicketsCriteria ticketsCriteria = new TicketsCriteria();
-        ticketsCriteria.withDateFrom(simpleDate.parse("2016-01-01T00:00:00+00:00"))
-                .withDateTo(simpleDate.parse("2016-03-01T01:00:00+00:00"))
-                .withLastChangeFrom(simpleDate.parse("2016-01-01T12:00:00+00:00"))
-                .withLastChangeTo(simpleDate.parse("2016-02-21T12:00:00+00:00"))
-                .withRectifiedOnFrom(simpleDate.parse("2016-01-01T14:00:00+00:00"))
-                .withRectifiedOnTo(simpleDate.parse("2016-02-20T14:00:00+00:00"));
+        ticketsCriteria.withDateFrom(simpleDate.parse("2016-01-01T00:00:00+02:00"))
+                .withDateTo(simpleDate.parse("2016-03-01T01:00:00+02:00"))
+                .withLastChangeFrom(simpleDate.parse("2016-01-01T12:00:00+02:00"))
+                .withLastChangeTo(simpleDate.parse("2016-02-21T12:00:00+02:00"))
+                .withRectifiedOnFrom(simpleDate.parse("2016-01-01T14:00:00+02:00"))
+                .withRectifiedOnTo(simpleDate.parse("2016-02-20T14:00:00+02:00"));
 
 
         when(http.execute(ApiMethods.GET, "/tickets", ticketsCriteria.getAsList(), null))
@@ -66,8 +65,8 @@ public class TicketsTest {
                         "Ticket #123",
                         "This is a description.",
                         "This is a summary.",
-                        simpleDate.parse("2016-01-01T12:00:00+00:00"),
-                        simpleDate.parse("2016-01-01T13:00:00+00:00"),
+                        simpleDate.parse("2016-01-01T12:00:00+02:00"),
+                        simpleDate.parse("2016-01-01T13:00:00+02:00"),
                         null,
                         null,
                         TicketStatus.CLOSED,
@@ -83,8 +82,8 @@ public class TicketsTest {
                         "Ticket #456",
                         "This is a description.",
                         "This is a summary.",
-                        simpleDate.parse("2016-02-01T12:00:00+00:00"),
-                        simpleDate.parse("2016-02-02T13:00:00+00:00"),
+                        simpleDate.parse("2016-02-01T12:00:00+02:00"),
+                        simpleDate.parse("2016-02-02T13:00:00+02:00"),
                         null,
                         null,
                         TicketStatus.INPROGRESS,
@@ -139,8 +138,8 @@ public class TicketsTest {
                         "Ticket #123",
                         "This is a description.",
                         "This is a summary.",
-                        simpleDate.parse("2016-01-01T12:00:00+00:00"),
-                        simpleDate.parse("2016-01-01T13:00:00+00:00"),
+                        simpleDate.parse("2016-01-01T12:00:00+02:00"),
+                        simpleDate.parse("2016-01-01T13:00:00+02:00"),
                         null,
                         null,
                         TicketStatus.CLOSED,
@@ -156,8 +155,8 @@ public class TicketsTest {
                         "Ticket #456",
                         "This is a description.",
                         "This is a summary.",
-                        simpleDate.parse("2016-02-01T12:00:00+00:00"),
-                        simpleDate.parse("2016-02-02T13:00:00+00:00"),
+                        simpleDate.parse("2016-02-01T12:00:00+02:00"),
+                        simpleDate.parse("2016-02-02T13:00:00+02:00"),
                         null,
                         null,
                         TicketStatus.INPROGRESS,
@@ -191,9 +190,9 @@ public class TicketsTest {
                 "Ticket #123",
                 "This is a description.",
                 "This is a summary.",
-                simpleDate.parse("2016-01-01T12:00:00+00:00"),
-                simpleDate.parse("2016-01-01T13:00:00+00:00"),
-                simpleDate.parse("2016-01-01T14:00:00+00:00"),
+                simpleDate.parse("2016-01-01T12:00:00+02:00"),
+                simpleDate.parse("2016-01-01T13:00:00+02:00"),
+                simpleDate.parse("2016-01-01T14:00:00+02:00"),
                 null,
                 TicketStatus.INPROGRESS,
                 10,

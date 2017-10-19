@@ -134,6 +134,25 @@ public class CommentsTest {
     }
 
     @Test
+    public void testCreateCommentWithoutCreatedTime() throws ParseException, IOException {
+        String bodyJson = TestUtils.readJsonFile("/responses/tickets/CreateCommentBodyWithoutCreatedTime.json");
+        String responseJson = TestUtils.readJsonFile("/responses/tickets/CreateComment.json");
+        when(http.execute(ApiMethods.POST, "/tickets/123/comments", null, bodyJson)).thenReturn(responseJson);
+
+        CommentDetail comment = new CommentDetail(
+                661288,
+                null,
+                "New Comment",
+                "Username"
+        );
+
+        int commentId = this.client.ticket("123").comments().create(comment);
+        verify(http, times(1)).execute(ApiMethods.POST, "/tickets/123/comments", null, bodyJson);
+
+        assertEquals(454548, commentId);
+    }
+
+    @Test
     public void testDeleteComment() throws ParseException, IOException {
         when(http.execute(ApiMethods.DELETE, "/tickets/123/comments/661288", null, null)).thenReturn("");
 

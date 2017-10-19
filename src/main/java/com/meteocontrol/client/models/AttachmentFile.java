@@ -15,7 +15,9 @@ public class AttachmentFile extends BaseModel {
     private String content;
     private String description;
     private int creatorId;
+    @Deprecated
     private Date created;
+    private Date createdAt;
     private static Base64.Decoder decoder = Base64.getDecoder();
     private static Base64.Encoder encoder = Base64.getEncoder();
 
@@ -80,13 +82,25 @@ public class AttachmentFile extends BaseModel {
     }
 
     @ModelProperty
+    @Deprecated
     public Date getCreated() {
         return this.created;
     }
 
+    @Deprecated
     public void setCreated(Date created) {
-        this.created = created;
+        this.createdAt = this.created = created;
     }
+
+    @ModelProperty
+    public Date getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.created = this.createdAt = createdAt;
+    }
+
 
     @ModelProperty
     public int getCreatorId() {

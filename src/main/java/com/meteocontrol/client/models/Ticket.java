@@ -18,12 +18,21 @@ public class Ticket extends BaseModel {
     private String designation;
     private String summary;
     private String description;
+    @Deprecated
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="UTC")
     private Date date;
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ssXXX")
+    private Date createdAt;
+    @Deprecated
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="UTC")
     private Date lastChange;
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ssXXX")
+    private Date lastChangedAt;
+    @Deprecated
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="UTC")
     private Date rectifiedOn;
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ssXXX")
+    private Date rectifiedAt;
     private String assignee;
     private TicketStatus status;
     private Integer causeId;
@@ -40,9 +49,9 @@ public class Ticket extends BaseModel {
                   String designation,
                   String description,
                   String summary,
-                  Date date,
-                  Date lastChange,
-                  Date rectifiedOn,
+                  Date createdAt,
+                  Date lastChangedAt,
+                  Date rectifiedAt,
                   String assignee,
                   TicketStatus status,
                   Integer causeId,
@@ -54,9 +63,9 @@ public class Ticket extends BaseModel {
         this.systemKey = systemKey;
         this.designation = designation;
         this.summary = summary;
-        this.date = date;
-        this.lastChange = lastChange;
-        this.rectifiedOn = rectifiedOn;
+        this.createdAt = this.date = createdAt;
+        this.lastChangedAt = this.lastChange = lastChangedAt;
+        this.rectifiedAt = this.rectifiedOn = rectifiedAt;
         this.assignee = assignee;
         this.status = status;
         this.causeId = causeId;
@@ -104,31 +113,64 @@ public class Ticket extends BaseModel {
         this.summary = summary;
     }
 
+    @Deprecated
     @ModelProperty
     public Date getDate() {
         return date;
     }
 
+    @Deprecated
     public void setDate(Date date) {
-        this.date = date;
+        this.createdAt = this.date = date;
     }
 
+    @ModelProperty
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = this.date = createdAt;
+    }
+
+    @Deprecated
     @ModelProperty
     public Date getLastChange() {
         return lastChange;
     }
 
+    @Deprecated
     public void setLastChange(Date lastChange) {
-        this.lastChange = lastChange;
+        this.lastChangedAt = this.lastChange = lastChange;
     }
 
     @ModelProperty
-    public Date getRectifiedOn() {
-        return rectifiedOn;
+    public Date getLastChangedAt() {
+        return lastChangedAt;
     }
 
+    public void setLastChangedAt(Date lastChangedAt) {
+        this.lastChangedAt = this.lastChange = lastChangedAt;
+    }
+
+    @Deprecated
+    @ModelProperty
+    public Date getRectifiedOn() {
+        return rectifiedAt;
+    }
+
+    @Deprecated
     public void setRectifiedOn(Date rectifiedOn) {
-        this.rectifiedOn = rectifiedOn;
+        this.rectifiedAt = this.rectifiedOn = rectifiedOn;
+    }
+
+    @ModelProperty
+    public Date getRectifiedAt() {
+        return rectifiedAt;
+    }
+
+    public void setRectifiedAt(Date rectifiedAt) {
+        this.rectifiedAt = this.rectifiedOn = rectifiedAt;
     }
 
     @ModelProperty
@@ -212,9 +254,9 @@ public class Ticket extends BaseModel {
                 p.getSystemKey().equals(this.systemKey) &&
                 p.getDesignation().equals(this.designation) &&
                 p.getSummary().equals(this.summary) &&
-                Objects.equals(p.getDate(), this.date) &&
-                Objects.equals(p.getLastChange(), this.lastChange) &&
-                Objects.equals(p.getRectifiedOn(), this.rectifiedOn) &&
+                Objects.equals(p.getCreatedAt(), this.createdAt) &&
+                Objects.equals(p.getLastChangedAt(), this.lastChangedAt) &&
+                Objects.equals(p.getRectifiedAt(), this.rectifiedAt) &&
                 Objects.equals(p.getAssignee(), this.assignee) &&
                 Objects.equals(p.getStatus(), this.status) &&
                 Objects.equals(p.getCauseId(), this.causeId) &&
@@ -226,6 +268,6 @@ public class Ticket extends BaseModel {
     }
 
     public boolean isValid() {
-        return !"".equals(this.systemKey) && !"".equals(this.designation) && this.date != null;
+        return !"".equals(this.systemKey) && !"".equals(this.designation) && this.createdAt != null;
     }
 }

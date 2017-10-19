@@ -6,16 +6,18 @@ import java.util.Date;
 
 public class CommentDetail extends BaseModel {
     private int commentId;
+    @Deprecated
     private Date date;
+    private Date createdAt;
     private String comment;
     private String username;
 
     public CommentDetail() {
     }
 
-    public CommentDetail(int commentId, Date date, String comment, String username) {
+    public CommentDetail(int commentId, Date createdAt, String comment, String username) {
         this.commentId = commentId;
-        this.date = date;
+        this.createdAt = this.date = createdAt;
         this.comment = comment;
         this.username = username;
     }
@@ -29,13 +31,24 @@ public class CommentDetail extends BaseModel {
         this.commentId = commentId;
     }
 
+    @Deprecated
     @ModelProperty
     public Date getDate() {
         return date;
     }
 
+    @Deprecated
     public void setDate(Date date) {
-        this.date = date;
+        this.createdAt = this.date = date;
+    }
+
+    @ModelProperty
+    public Date getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = this.date = createdAt;
     }
 
     @ModelProperty

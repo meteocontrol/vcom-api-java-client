@@ -73,6 +73,7 @@ public class AttachmentsTest {
         expectedFile.setId(1234);
         expectedFile.setCreatorId(12345);
         expectedFile.setCreated(simpleDate.parse("2017-08-29T03:22:23+00:00"));
+        expectedFile.setCreatedAt(simpleDate.parse("2017-08-29T03:22:23+00:00"));
         assertEquals(expectedFile, attachment);
     }
 

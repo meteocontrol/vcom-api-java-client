@@ -10,6 +10,9 @@ import com.meteocontrol.client.models.Comment;
 import com.meteocontrol.client.params.ApiMethods;
 
 import java.io.IOException;
+import java.lang.System;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 public class Comments extends SubEndpoint {
     public Comments(EndpointInterface parent) {
@@ -32,6 +35,11 @@ public class Comments extends SubEndpoint {
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode root = mapper.createObjectNode();
         root.put("comment", commentDetail.getComment());
+        if (commentDetail.getCreatedAt() != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+            dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+            root.put("createdAt", dateFormat.format(commentDetail.getCreatedAt()));
+        }
         String responseJson = this.api.run(this.getUrl(), null, root.toString(), ApiMethods.POST);
         JsonNode rootNode = mapper.readValue(responseJson, JsonNode.class);
         return Integer.parseInt(rootNode.get("data").get("commentId").toString());
